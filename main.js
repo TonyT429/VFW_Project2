@@ -13,37 +13,44 @@ window.addEventListener("DOMContentLoaded", function() {
 	}
 	
 	// Create the element for the select field and fill with options
-	function genres ( ) {
-		var tagsForm = document.getElementsByTagName("form"),   // tagsForm is an array of all the form tags
-			selectTag = $( 'select'),
-			buildSelect = document.createdElement( 'select');
-			buildSelect.setAttribute( "id", "genres" );
-		for (var i = 0, g =genreSubjects.length; i < g; i++) {                           // I left off here - need to check this for errors!!
-			var buildOption = document.createElement( 'option' );
-			var optionText = genreTypes[ i ];
-			buildOption.setAttribute( "value", optionText);
-			buildOption.innerHTML = optionText;
-			buildSelect.appendChild( buildOption );
+	function buildList ( ) { 
+		var formTag = document.getElementsByTagName( "form"),
+			selectLi = $( 'select' ),
+			makeSelect = document.createElement ( 'select' );
+			makeSelect.setAttribute( "id", "genres" );
+		for (var i=0; g = genreTypes.length; i<g; i++); { 
+			var makeOption = document.createElement( 'option' );
+			var optText = genreTypes[ i ];
+			makeOption.setAttribute( "value", optText );
+			makeOption.innerHTML = optText;
+			makeSelect.appendChild(makeOption);
 		}
-		selectTag.appendChild( buildSelect );
-		
+		selectLi.appendChild(makeSelect);
 	}
-
+	
+	function saveData ( ) {
+		localStorage.setItem ( "hello", "hola" );
+		alert(localStorage.length);
+	}
+	
 	// Variable defaults
-	var genreTypes = ["-- Choose a Genre or Subject --", "Art & Photography", "Biographies & Memoirs", "Children's Books", "Computers & Technolory", "Cookbooks, Food & Wine", "Crafts, Hobbies, and Home", "Education & Reference", "Health, Fitness & Dieting", "History", "Horror", "Humor", "Law", "Literature & Fiction", "Manga & Graphic Novels", "Math & Science", "Medical", "Mystery, Crime, Thriller & Suspense", "Parenting & Relationships", "Religion & Spirituality", "Romance", "Sci Fi & Fantasy", "Self Help", "Sports & Outdoors", "Teens", "Travel" "Western",  ];
-	genres( );
+	buildList( );
 
 
 	// Set Link and Submit Click Events
 	var displayLink = $ ( 'show' );
-	displayLink.addEventListener ( 'click', getData );
+	displayLink.addEventListener ( 'click', showData );
 	
 	var clearLink = $ ( 'clear' );
-	clearLink.addEventListener ( 'click', clearLocal );
+	clearLink.addEventListener ( 'click', clearData );
 	
 	var save = $ ( 'submit' );
-	save.addEventListener ( 'click', storeData );
+	save.addEventListener ( 'click', saveData );
 
 
 
 } );
+
+
+
+// var genreTypes = [ "-- Choose a Genre or Subject --", "Art & Photography", "Biographies & Memoirs", "Children's Books", "Computers & Technolory", "Cookbooks, Food & Wine", "Crafts, Hobbies, and Home", "Education & Reference", "Health, Fitness & Dieting", "History", "Horror", "Humor", "Law", "Literature & Fiction", "Manga & Graphic Novels", "Math & Science", "Medical", "Mystery, Crime, Thriller & Suspense", "Parenting & Relationships", "Religion & Spirituality", "Romance", "Sci Fi & Fantasy", "Self Help", "Sports & Outdoors", "Teens", "Travel", "Western",  ];
