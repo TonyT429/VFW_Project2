@@ -5,7 +5,7 @@
 // Wait until the DOM is ready.
 
 window.addEventListener("DOMContentLoaded", function() { 
-alert(localStorage.value(0));
+alert (localStorage.value(0));
 
 
     // getElementById Function
@@ -46,7 +46,27 @@ alert(localStorage.value(0));
         }
     }
     
-    
+    function toggleControls( n ) {
+        switch( n ) {
+            case "on":
+                $( 'contactForm').style.display = "none";
+                $( 'clear' ).style.display = "inline";
+                $( 'displayLink' ).style.display = "none";
+                $( 'addNew').style.display = "inline";
+                break;
+            case "off":
+                $( 'contactForm').style.display = "block";
+                $( 'clear' ).style.display = "inline";
+                $( 'displayLink' ).style.display = "none";
+                $( 'addNew').style.display = "none";
+                $( 'items' ).style.display = "none";
+                break;
+            default:
+                return false;
+        }
+    }
+    
+    
     function saveData ( ) {
         var id         = Math.floor(Math.random( )*100001);           // collect and store all form field values as a object.  
         getSelectedRadio( );                                                         // calls the value of the radio button        
@@ -55,7 +75,7 @@ alert(localStorage.value(0));
             item.btitle               = [ "Book Title:", $( 'btitle' ).value ];           
             item.author            = [ "Author:", $( 'author' ).value ];
             item.isbn                = [ "ISBN #:", $( 'isbn' ).value ];
-            item.children          = [ "Children's Books:", $( 'childrens' ).value ];
+            item.children         = [ "Children's Books:", $( 'childrens' ).value ];
             item.horror             = [ "Horror:", $( 'horror' ).value ];
             item.humor             = [ "Humor:", $( 'humor' ).value ];
             item.literature         = [ "Literature & Fiction:", $( 'literature' ).value ];
@@ -78,7 +98,7 @@ alert(localStorage.value(0));
             item.parenting        = [ "Parenting & Relationships:", $( 'parenting' ).value ];
             item.religion           = [ "Religion & Spirituality:", $( 'religion' ).value ];
             item.math               = [ "Math & Science:", $( 'math' ).value ];
-            item.selfHelp         = [ "Self-Help:", $( 'self-help' ).value ];
+            item.selfhelp         = [ "Self-Help:", $( 'selfhelp' ).value ];
             item.sports             = [ "Sports & Outdoors:", $( 'sports' ).value ];
             item.teens              = [ "Teens:", $( 'teens' ).value ];
             item.travel              = [ "Travel:", $( 'travel' ).value ];
@@ -86,16 +106,24 @@ alert(localStorage.value(0));
             item.seriesnum      = [ "Series Number:", $( 'seriesnum' ).value ];
             item.series             = [ "Series:", getSelectedRadio( ) ];                           // for radio buttons
             
+		// Save data to local storage using JSON stringify to convert objects to a string.
+		
         localStorage.setItem( id, JSON.stringify( item ) );
         alert ("Saved" );
     }
 
-	function showData( ) {                                         // Display the data in Local Storage on the browser.
+	function showData( ) {                                         
+		toggleControls( "on" );
+        if (localStorage.length === 0 ) {
+            alert ( "There is no data in Local Storage." );
+        }
+        // Display the data in Local Storage on the browser.
 		var makeDiv = document.createElement( 'div' );
-		makeDiv.setAttribute( "id", "item" );
+		makeDiv.setAttribute( "id", "items" );
 		var makeList = document.createElement( 'ul' );
 		makeDiv.appendChild(makeList);
 		document.body.appendChild(makeDiv);
+		$( 'items' ).style.display = "block";
 		for (var i=0, lstor=localStorage.length; i<lstor; i++) {
 			var makeli =document.createElement( 'li');
 			makeList.appendChild(makeli);
@@ -106,15 +134,25 @@ alert(localStorage.value(0));
 			makeli.appendChild(buildSubList);
 			for (var q in obj) {
 				var buildSubli = document.createElement( 'li');
-				buildSubList.appendChild(buildSubli( i ));
+				buildSubList.appendChild( buildSubli );
 				var optSubText = obj[ q ] [ 0 ]+ " "  + obj [ q ] [ 1 ];
 				buildSubli.innerHTML = optSubText;
 			}
 		}
 	}
+	
+	 function clearLocData( ) {
+        if (localStorage.length === 0) {
+            alert ( "This is no data to clear." );
+        } else {
+            localStorage.clear( );
+            alert( "All contacts are deleted!" );
+            window.location.reload( );
+            return false;
+        }
+    }
     
     // Variable defaults
-    
     buildList( );
 
 
@@ -123,8 +161,8 @@ alert(localStorage.value(0));
     var displayLink = $ ( 'show' );
    displayLink.addEventListener ( 'click', showData );
     
-//    var clearLink = $ ( 'clear' );
-//    clearLink.addEventListener ( 'click', clearData );
+    var clearLink = $ ( 'clear' );
+    clearLink.addEventListener ( 'click', clearLocData );
     
     var save = $ ( 'submit' );
     save.addEventListener ( 'click', saveData );
@@ -133,7 +171,3 @@ alert(localStorage.value(0));
 
 } );
 
-/*
-
-          
-*/
