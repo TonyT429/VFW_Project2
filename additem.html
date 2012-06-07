@@ -36,7 +36,7 @@
 						<li><label for="author">Author:</label><input type="text" id="author" /></li>
 						<li><label for="isbn">ISBN Number:</label><input type="text" id="isbn" /></li>
 						
-						<li><label for="genre" id="genre" >Genre / Subject</label>
+						<li><label for="genre" id="genres" >Genre / Subject</label>
 							<select>
 								<optgroup label="Fiction">
 									<option value="childrens" id="childrens" >Children's Books</option>
@@ -46,7 +46,7 @@
 									<option value="manga" id="manga" >Manga & Graphic Novels </option>
 									<option value="mystery" id=mystery" >Mystery, Crime, Thriller & Suspense</option>
 									<option value="romance"id="romance" >Romance </option>
-									<option value="sci-fi" id="sci-fi" >Sci Fi / Fantasy</option>
+									<option value="sci-fi" id="scifi" >Sci Fi / Fantasy</option>
 									<option value="western" id="western" >Western</option>
 								<optgroup label="Non Fiction">
 									<option value="art" id="art" >Art & Photography </option>
@@ -63,7 +63,7 @@
 									<option value="parenting" id="parenting" >Parenting & Relationships</option>
 									<option value="religion" id="religion" >Religion & Spirituality</option>
 									<option value="science" id="science" >Science & Math </option>
-									<option value="self-help" id="self-help" >Self Help</option>
+									<option value="selfhelp" id="selfhelp" >Self Help</option>
 									<option value="sports" id="sports" >Sports & Outdoors</option>
 									<option value="teens" id="teens" >Teens </option>
 									<option value="travel" id="travel" >Travel</option>
@@ -74,7 +74,7 @@
 						<li>Is This Book Part Of A Series?:</li>
 						
 						<li><input type="radio" name="isaseries" checked value="No" id="no" /><label for="no">No</label></li>
-						<li><input type="radio" name="isaseries" svalue="Yes" id="yes" /><label for="yes">Yes</label></li>	
+						<li><input type="radio" name="isaseries" value="Yes" id="yes" /><label for="yes">Yes</label></li>	
 						<li><label for="seriesname">Series Name:</label><input type="text" id="seriesname" placeholder="Enter Series name" /></li>
 						<li><label for="seriesnum">Book # in the Series:</label><input type="text" id="seriesnum" placeholder="Enter series number" /></li>
 					</ul>
@@ -92,6 +92,7 @@
 		</form>
 			<input type="submit" value="Save" id="submit" />
 			<p><//p>
+			
 			<li><a href="#" id="clear">Clear Data</a>
 			<li><a href="#" id="show">Display Data</a>
 			
