@@ -18,11 +18,12 @@ window.addEventListener("DOMContentLoaded", function() {
     // Create the element for the select field and fill with options
     
      function makeCats( ) {
+	console.log("Testing");
         var genreTypes = [ "-- Choose a Genre or Subject --", "Art & Photography", "Biographies & Memoirs", "Children's Books", "Computers & Technolory", "Cookbooks, Food & Wine", "Crafts, Hobbies, and Home", "Education & Reference", "Health, Fitness & Dieting", "History", "Horror", "Humor", "Law","Literature & Fiction", "Manga & Graphic Novels", "Math & Science", "Medical", "Mystery, Crime, Thriller & Suspense", "Parenting & Relationships", "Religion & Spirituality", "Romance", "Sci Fi & Fantasy", "Self Help", "Sports & Outdoors", "Teens", "Travel", "Western"];
         var formTag = document.getElementsByTagName( "form" ),
-            selectLi = $( 'genre' ),
-            makeSelect = document.createElement( 'genre' );
-            makeSelect.setAttribute( 'id', 'genre ' );
+            selectLi = $( 'subject' ),
+            makeSelect = document.createElement( 'select' );
+            makeSelect.setAttribute( 'id', 'genre' );
         for (var i=0, j=genreTypes.length; i<j; i++) {
             var makeOption = document.createElement( 'option' );
             var optText = genreTypes[ i ];
@@ -30,15 +31,17 @@ window.addEventListener("DOMContentLoaded", function() {
             makeOption.innerHTML = optText;
             makeSelect.appendChild(makeOption );
         }
+        console.log($('genre'));
         selectLi.appendChild( makeSelect );
     }
     
-    
+     makeCats( );
     // Get value of selected Radio Button
     
     function getSelectedRadio( ) {
-        var isaseries;
-        var rbuttons = document.forms(0).isaseries;
+	console.log("working");
+        var rbuttons = document.forms[0].isaseries;
+	   console.log(rbuttons);
         for ( var i=0; i < rbuttons.length; i++ ) {
             if ( rbuttons[ i ].checked) {
                 isaseries = rbuttons[ i ].value;
@@ -50,15 +53,15 @@ window.addEventListener("DOMContentLoaded", function() {
         switch( n ) {
             case "on":
                 $( 'genreForm').style.display = "none";
-                $( 'clear' ).style.display = "inline";
+                $( 'clearLink' ).style.display = "inline";
                 $( 'displayLink' ).style.display = "none";
-                $( 'addNew').style.display = "inline";
+//                $( 'addNew').style.display = "inline";
                 break;
             case "off":
                 $( 'genreForm').style.display = "block";
-                $( 'clear' ).style.display = "inline";
+                $( 'clearLink' ).style.display = "inline";
                 $( 'displayLink' ).style.display = "none";
-                $( 'addNew').style.display = "none";
+//                $( 'addNew').style.display = "none";
                 $( 'items' ).style.display = "none";
                 break;
             default:
@@ -75,7 +78,8 @@ window.addEventListener("DOMContentLoaded", function() {
             item.btitle               = [ "Book Title:", $( 'btitle' ).value ];           
             item.author            = [ "Author:", $( 'author' ).value ];
             item.isbn                = [ "ISBN #:", $( 'isbn' ).value ];
-            item.children         = [ "Children's Books:", $( 'childrens' ).value ];
+/*
+            item.children          = [ "Children's Books:", $( 'childrens' ).value ];
             item.horror             = [ "Horror:", $( 'horror' ).value ];
             item.humor             = [ "Humor:", $( 'humor' ).value ];
             item.literature         = [ "Literature & Fiction:", $( 'literature' ).value ];
@@ -84,7 +88,7 @@ window.addEventListener("DOMContentLoaded", function() {
             item.romance         = [ "Romance:", $( 'romance' ).value ];
             item.scifi                = [ "Sci-Fi & Fantasy:", $( 'scifi' ).value ];
             item.western          = [ "Western:", $( 'western' ).value ];
-			 item.art                   = [ "Art & Photography:", $( 'art' ).value ];
+		  item.art                   = [ "Art & Photography:", $( 'art' ).value ];
             item.biography       = [ "Biographies and Memoir:", $( 'biography' ).value ];
             item.business         = [ "Business & Finance:", $( 'business' ).value ];
             item.computers       = [ "Computers & Technology:", $( 'computers' ).value ];
@@ -102,9 +106,10 @@ window.addEventListener("DOMContentLoaded", function() {
             item.sports             = [ "Sports & Outdoors:", $( 'sports' ).value ];
             item.teens              = [ "Teens:", $( 'teens' ).value ];
             item.travel              = [ "Travel:", $( 'travel' ).value ];
+*/
             item.seriesname    = [ "Series Name:", $( 'seriesname' ).value ];
             item.seriesnum      = [ "Series Number:", $( 'seriesnum' ).value ];
-            item.series             = [ "Series:", getSelectedRadio( ) ];                           // for radio buttons
+            item.series             = [ "Series:",  isaseries ];                           // for radio buttons
             
 		// Save data to local storage using JSON stringify to convert objects to a string.
 		
@@ -112,7 +117,7 @@ window.addEventListener("DOMContentLoaded", function() {
         alert ("Saved" );
     }
 
- makeCats( );
+
 
 	function getData ( ) {
         toggleControls( "on" );
@@ -158,15 +163,15 @@ window.addEventListener("DOMContentLoaded", function() {
     // Variable defaults
 
     var isaseries;
-    makeCats( );
+   
 
 
     // Set Link and Submit Click Events
     
-    var displayLink = $ ( 'show' );
+    var displayLink = $ ( 'displayLink' );
    displayLink.addEventListener ( 'click', getData );
     
-    var clearLink = $ ( 'clear' );
+    var clearLink = $ ( 'clearLink' );
     clearLink.addEventListener ( 'click', clearLocData );
     
     var save = $ ( 'submit' );

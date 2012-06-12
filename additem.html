@@ -28,7 +28,7 @@
 		
 		<body>
 			<h1> Add A Book  </h1>
-			<form action="#" id="form" method="post">
+			<form action="#" id="genreForm" method="post">
 				<fieldset>
 					<legend>Book Info</legend>
 					<ul>
@@ -36,8 +36,9 @@
 						<li><label for="author">Author:</label><input type="text" id="author" /></li>
 						<li><label for="isbn">ISBN Number:</label><input type="text" id="isbn" /></li>
 						
-						<li id="genre"><label for="genre" >Genre / Subject</label>
-							<select>
+						<li id="subject"><label for="genre" >Genre / Subject</label>
+<!--
+							<select id="subject">
 								<optgroup label="Fiction">
 									<option value="childrens" id="childrens" >Children's Books</option>
 									<option value="horror" id="horror" >Horror</option>
@@ -69,7 +70,7 @@
 									<option value="travel" id="travel" >Travel</option>
 								</optgroup>   
 							</select>		
-							
+-->							
 				
 						<li>Is This Book Part Of A Series?:</li>
 						
@@ -91,10 +92,10 @@
 			</fieldset>
 		</form>
 			<input type="button" name="submit" value="Save" id="submit" />
-			<p><//p>
+			<p></p>
 			
-			<li><a href="#" id="clear">Clear Data</a>
-			<li><a href="#" id="show">Display Data</a>
+			<li><a href="#" id="clearLink">Clear Data</a>
+			<li><a href="#" id="displayLink">Display Data</a>
 			
 			<script src="main.js" type="text/javascript"> </script/>
 		</body>
