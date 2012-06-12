@@ -5,7 +5,7 @@
 // Wait until the DOM is ready.
 
 window.addEventListener("DOMContentLoaded", function() { 
-alert (localStorage.value(0));
+// alert (localStorage.value(0));
 
 
     // getElementById Function
@@ -20,9 +20,9 @@ alert (localStorage.value(0));
      function makeCats( ) {
         var genreTypes = [ "-- Choose a Genre or Subject --", "Art & Photography", "Biographies & Memoirs", "Children's Books", "Computers & Technolory", "Cookbooks, Food & Wine", "Crafts, Hobbies, and Home", "Education & Reference", "Health, Fitness & Dieting", "History", "Horror", "Humor", "Law","Literature & Fiction", "Manga & Graphic Novels", "Math & Science", "Medical", "Mystery, Crime, Thriller & Suspense", "Parenting & Relationships", "Religion & Spirituality", "Romance", "Sci Fi & Fantasy", "Self Help", "Sports & Outdoors", "Teens", "Travel", "Western"];
         var formTag = document.getElementsByTagName( "form" ),
-            selectLi = $( 'select' ),
-            makeSelect = document.createElement( 'select' );
-            makeSelect.setAttribute( 'id', 'genres' );
+            selectLi = $( 'genre' ),
+            makeSelect = document.createElement( 'genre' );
+            makeSelect.setAttribute( 'id', 'genre ' );
         for (var i=0, j=genreTypes.length; i<j; i++) {
             var makeOption = document.createElement( 'option' );
             var optText = genreTypes[ i ];
@@ -71,7 +71,7 @@ alert (localStorage.value(0));
         var id = Math.floor(Math.random( )*1000000001);          // collect and store all form field values as a object.  
         getSelectedRadio( );                                                         // calls the value of the radio button        
         var item     = { };                                                                      
-            item.genre             = [ "Genre:", $( 'genres' ).value ];               
+            item.genre             = [ "Genre:", $( 'genre' ).value ];               
             item.btitle               = [ "Book Title:", $( 'btitle' ).value ];           
             item.author            = [ "Author:", $( 'author' ).value ];
             item.isbn                = [ "ISBN #:", $( 'isbn' ).value ];
@@ -111,6 +111,8 @@ alert (localStorage.value(0));
         localStorage.setItem( id, JSON.stringify( item ) );
         alert ("Saved" );
     }
+
+ makeCats( );
 
 	function getData ( ) {
         toggleControls( "on" );
